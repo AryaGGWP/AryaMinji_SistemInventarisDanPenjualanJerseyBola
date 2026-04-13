@@ -44,7 +44,7 @@
             this.btnCekKoneksi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCekKoneksi.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCekKoneksi.ForeColor = System.Drawing.Color.Black;
-            this.btnCekKoneksi.Location = new System.Drawing.Point(428, 430);
+            this.btnCekKoneksi.Location = new System.Drawing.Point(432, 387);
             this.btnCekKoneksi.Name = "btnCekKoneksi";
             this.btnCekKoneksi.Size = new System.Drawing.Size(135, 35);
             this.btnCekKoneksi.TabIndex = 0;
@@ -57,7 +57,7 @@
             this.btnLogin.BackColor = System.Drawing.SystemColors.Info;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(413, 345);
+            this.btnLogin.Location = new System.Drawing.Point(415, 296);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(166, 49);
             this.btnLogin.TabIndex = 1;
@@ -67,19 +67,22 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(347, 151);
-            this.txtUsername.Multiline = true;
+            this.txtUsername.Font = new System.Drawing.Font("Microsoft YaHei", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsername.Location = new System.Drawing.Point(347, 161);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(299, 56);
+            this.txtUsername.Size = new System.Drawing.Size(299, 38);
             this.txtUsername.TabIndex = 2;
+            this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(347, 258);
-            this.txtPassword.Multiline = true;
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft YaHei", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(347, 240);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(290, 56);
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(290, 38);
             this.txtPassword.TabIndex = 3;
+            this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // label1
@@ -87,7 +90,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(446, 131);
+            this.label1.Location = new System.Drawing.Point(446, 137);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 21);
             this.label1.TabIndex = 4;
@@ -99,7 +102,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(446, 237);
+            this.label2.Location = new System.Drawing.Point(446, 216);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 21);
             this.label2.TabIndex = 5;
@@ -111,11 +114,11 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label3.Font = new System.Drawing.Font("Rockwell Condensed", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Rockwell", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(1, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(595, 47);
+            this.label3.Size = new System.Drawing.Size(859, 50);
             this.label3.TabIndex = 6;
             this.label3.Text = "Sistem Inventaris dan Penjualan Jersey Bola";
             // 

@@ -45,45 +45,31 @@ namespace ProjectJerseyBola
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            // 1. Cek dulu, jangan sampai kasir lupa ngisi tapi udah main klik aja
             if (txtUsername.Text == "" || txtPassword.Text == "")
             {
                 MessageBox.Show("Username dan Password nggak boleh kosong cuy!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // Berhenti di sini, gak usah lanjut ke database
+                return; 
             }
-
-            // 2. Siapin jembatan koneksi (Ganti tulisan NAMA_LAPTOP dan NAMA_DATABASE ya!)
             string connectionString = @"Data Source=IDEAPAD-ARYA\BANGDIO; Initial Catalog=DB_Jersey; User ID=sa; Password=123; TrustServerCertificate=True";
             SqlConnection conn = new SqlConnection(connectionString);
 
             try
             {
                 conn.Open();
-
-                // 3. Bikin query SQL buat nyari akun di tabel Admin
-                // Sesuai Class Diagram kita, nama tabelnya 'Admin', kolomnya 'Username' dan 'Password'
                 string query = "SELECT COUNT(*) FROM Admin WHERE Username = @username AND Password = @password";
                 SqlCommand cmd = new SqlCommand(query, conn);
 
-                // Pakai parameter gini biar aman dari serangan Hacker (SQL Injection)
                 cmd.Parameters.AddWithValue("@username", txtUsername.Text);
                 cmd.Parameters.AddWithValue("@password", txtPassword.Text);
 
-                // 4. Eksekusi pencarian
-                int result = (int)cmd.ExecuteScalar(); // Hasilnya bakal 1 kalau ketemu, 0 kalau nggak ada
+                int result = (int)cmd.ExecuteScalar();
 
                 if (result > 0)
                 {
                     MessageBox.Show("Selamat datang di Toko Jersey!!.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // TODO: Nanti kodingan buat pindah ke Form Menu Utama / Dashboard ditaruh di sini
-                    // FormMenuUtama menu = new FormMenuUtama();
-                    // menu.Show();
-                    // this.Hide();
                 }
                 else
                 {
-                    // Kalau result-nya 0, berarti username/password salah
                     MessageBox.Show("Username atau Password salah, coba ingat-ingat lagi!", "Gagal Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -93,7 +79,6 @@ namespace ProjectJerseyBola
             }
             finally
             {
-                // Pastikan gerbang selalu ditutup lagi, mau sukses atau error
                 conn.Close();
             }
         }
