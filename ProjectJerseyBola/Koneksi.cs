@@ -9,7 +9,7 @@ namespace ProjectJerseyBola // Pastikan namespace ini sama kayak nama project lu
         public SqlConnection GetConn()
         {
             // WARNING: Ganti tulisan di dalem kutip ini pakai Connection String lu sendiri!
-            SqlConnection conn = new SqlConnection(@"Data Source=IDEAPAD-ARYA\BANGDIO; Initial Catalog=DBAkademikADO; User ID=sa; Password=123; TrustServerCertificate=True");
+            SqlConnection conn = new SqlConnection(@"Data Source=IDEAPAD-ARYA\BANGDIO; Initial Catalog=DB_Jersey; User ID=sa; Password=123; TrustServerCertificate=True");
             return conn;
         }
     }
