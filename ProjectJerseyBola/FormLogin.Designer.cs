@@ -50,6 +50,7 @@
             this.btnCekKoneksi.TabIndex = 0;
             this.btnCekKoneksi.Text = "Cek Koneksi";
             this.btnCekKoneksi.UseVisualStyleBackColor = false;
+            this.btnCekKoneksi.Click += new System.EventHandler(this.btnCekKoneksi_Click);
             // 
             // btnLogin
             // 
