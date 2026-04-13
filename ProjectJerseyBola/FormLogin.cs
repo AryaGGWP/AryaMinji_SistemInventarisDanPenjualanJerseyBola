@@ -25,8 +25,8 @@ namespace ProjectJerseyBola
 
         private void btnCekKoneksi_Click(object sender, EventArgs e)
         {
-            // WARNING: Ganti tulisan NAMA_LAPTOP dan NAMA_DATABASE sesuai punya lu!
-            string connectionString = @"Data Source=NAMA_LAPTOP_LU;Initial Catalog=NAMA_DATABASE_LU;Integrated Security=True";
+            
+            string connectionString = @"ata Source=IDEAPAD-ARYA\BANGDIO; Initial Catalog=DBAkademikADO; User ID=sa; Password=123; TrustServerCertificate=True";
 
             SqlConnection conn = new SqlConnection(connectionString);
 
