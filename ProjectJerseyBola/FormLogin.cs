@@ -53,7 +53,7 @@ namespace ProjectJerseyBola
             }
 
             // 2. Siapin jembatan koneksi (Ganti tulisan NAMA_LAPTOP dan NAMA_DATABASE ya!)
-            string connectionString = @"Data Source=NAMA_LAPTOP_LU;Initial Catalog=NAMA_DATABASE_LU;Integrated Security=True";
+            string connectionString = @"Data Source=IDEAPAD-ARYA\BANGDIO; Initial Catalog=DB_Jersey; User ID=sa; Password=123; TrustServerCertificate=True";
             SqlConnection conn = new SqlConnection(connectionString);
 
             try
@@ -74,7 +74,7 @@ namespace ProjectJerseyBola
 
                 if (result > 0)
                 {
-                    MessageBox.Show("Login Berhasil! Selamat datang di BillingPlay.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Selamat datang di Toko Jersey!!.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // TODO: Nanti kodingan buat pindah ke Form Menu Utama / Dashboard ditaruh di sini
                     // FormMenuUtama menu = new FormMenuUtama();
