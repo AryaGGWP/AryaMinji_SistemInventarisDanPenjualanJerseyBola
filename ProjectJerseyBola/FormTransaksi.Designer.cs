@@ -51,7 +51,7 @@
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.dtpTransaksi = new System.Windows.Forms.DateTimePicker();
             this.btnSimpanJual = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnHitung = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label7
@@ -114,6 +114,7 @@
             this.cbPilihJersey.Name = "cbPilihJersey";
             this.cbPilihJersey.Size = new System.Drawing.Size(246, 36);
             this.cbPilihJersey.TabIndex = 24;
+            this.cbPilihJersey.SelectedIndexChanged += new System.EventHandler(this.cbPilihJersey_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -159,6 +160,7 @@
             this.txtKode.Size = new System.Drawing.Size(207, 33);
             this.txtKode.TabIndex = 28;
             this.txtKode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtKode.TextChanged += new System.EventHandler(this.txtKode_TextChanged);
             // 
             // txtNama
             // 
@@ -169,6 +171,7 @@
             this.txtNama.Size = new System.Drawing.Size(207, 33);
             this.txtNama.TabIndex = 29;
             this.txtNama.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtNama.TextChanged += new System.EventHandler(this.txtNama_TextChanged);
             // 
             // txtHarga
             // 
@@ -179,6 +182,7 @@
             this.txtHarga.Size = new System.Drawing.Size(207, 33);
             this.txtHarga.TabIndex = 30;
             this.txtHarga.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtHarga.TextChanged += new System.EventHandler(this.txtHarga_TextChanged);
             // 
             // txtStok
             // 
@@ -189,6 +193,7 @@
             this.txtStok.Size = new System.Drawing.Size(207, 33);
             this.txtStok.TabIndex = 31;
             this.txtStok.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtStok.TextChanged += new System.EventHandler(this.txtStok_TextChanged);
             // 
             // label5
             // 
@@ -242,6 +247,7 @@
             this.txtJumlah.Size = new System.Drawing.Size(111, 33);
             this.txtJumlah.TabIndex = 36;
             this.txtJumlah.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtJumlah.TextChanged += new System.EventHandler(this.txtJumlah_TextChanged);
             // 
             // label11
             // 
@@ -295,18 +301,19 @@
             this.btnSimpanJual.Text = "SIMPAN TRANSAKSI";
             this.btnSimpanJual.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnHitung
             // 
-            this.button1.BackColor = System.Drawing.Color.Coral;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(564, 300);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(206, 41);
-            this.button1.TabIndex = 42;
-            this.button1.Text = "Hitung Harga";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnHitung.BackColor = System.Drawing.Color.Coral;
+            this.btnHitung.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnHitung.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHitung.ForeColor = System.Drawing.Color.White;
+            this.btnHitung.Location = new System.Drawing.Point(564, 300);
+            this.btnHitung.Name = "btnHitung";
+            this.btnHitung.Size = new System.Drawing.Size(206, 41);
+            this.btnHitung.TabIndex = 42;
+            this.btnHitung.Text = "Hitung Harga";
+            this.btnHitung.UseVisualStyleBackColor = false;
+            this.btnHitung.Click += new System.EventHandler(this.btnHitung_Click);
             // 
             // FormTransaksi
             // 
@@ -315,7 +322,7 @@
             this.BackColor = System.Drawing.Color.DodgerBlue;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(952, 540);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnHitung);
             this.Controls.Add(this.btnSimpanJual);
             this.Controls.Add(this.dtpTransaksi);
             this.Controls.Add(this.txtTotal);
@@ -372,6 +379,6 @@
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.DateTimePicker dtpTransaksi;
         private System.Windows.Forms.Button btnSimpanJual;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnHitung;
     }
 }

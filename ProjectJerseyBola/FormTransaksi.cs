@@ -21,5 +21,40 @@ namespace ProjectJerseyBola
         {
 
         }
+
+        private void cbPilihJersey_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtKode_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNama_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtJumlah_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnHitung_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtHarga_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtStok_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
