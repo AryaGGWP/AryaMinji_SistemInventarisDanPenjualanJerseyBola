@@ -48,10 +48,11 @@ namespace ProjectJerseyBola
             cekStok.Show();
             this.Hide();
         }
-
         private void btnTransaksi_Click(object sender, EventArgs e)
         {
-
+            FormTransaksi jual = new FormTransaksi();
+            jual.Show();
+            this.Hide();
         }
 
         private void btnLaporan_Click(object sender, EventArgs e)

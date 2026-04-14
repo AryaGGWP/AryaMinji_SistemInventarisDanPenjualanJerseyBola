@@ -70,6 +70,12 @@
     <Compile Include="FormMenuUtama.Designer.cs">
       <DependentUpon>FormMenuUtama.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTransaksi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTransaksi.Designer.cs">
+      <DependentUpon>FormTransaksi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Koneksi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,6 +90,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMenuUtama.resx">
       <DependentUpon>FormMenuUtama.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTransaksi.resx">
+      <DependentUpon>FormTransaksi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
