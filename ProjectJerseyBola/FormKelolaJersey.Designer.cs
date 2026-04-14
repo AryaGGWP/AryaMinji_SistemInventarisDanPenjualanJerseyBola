@@ -231,6 +231,7 @@
             this.txtHarga.Name = "txtHarga";
             this.txtHarga.Size = new System.Drawing.Size(210, 31);
             this.txtHarga.TabIndex = 14;
+            this.txtHarga.TextChanged += new System.EventHandler(this.txtHarga_TextChanged);
             // 
             // txtStok
             // 

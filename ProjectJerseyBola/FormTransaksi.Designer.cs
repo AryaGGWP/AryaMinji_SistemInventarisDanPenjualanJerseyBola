@@ -49,9 +49,9 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.TextBox();
-            this.dtpTransaksi = new System.Windows.Forms.DateTimePicker();
             this.btnSimpanJual = new System.Windows.Forms.Button();
             this.btnHitung = new System.Windows.Forms.Button();
+            this.txtTanggal = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label7
@@ -110,9 +110,9 @@
             this.cbPilihJersey.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cbPilihJersey.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbPilihJersey.FormattingEnabled = true;
-            this.cbPilihJersey.Location = new System.Drawing.Point(364, 92);
+            this.cbPilihJersey.Location = new System.Drawing.Point(258, 92);
             this.cbPilihJersey.Name = "cbPilihJersey";
-            this.cbPilihJersey.Size = new System.Drawing.Size(246, 36);
+            this.cbPilihJersey.Size = new System.Drawing.Size(454, 36);
             this.cbPilihJersey.TabIndex = 24;
             this.cbPilihJersey.SelectedIndexChanged += new System.EventHandler(this.cbPilihJersey_SelectedIndexChanged);
             // 
@@ -157,7 +157,7 @@
             this.txtKode.Location = new System.Drawing.Point(216, 216);
             this.txtKode.Name = "txtKode";
             this.txtKode.ReadOnly = true;
-            this.txtKode.Size = new System.Drawing.Size(207, 33);
+            this.txtKode.Size = new System.Drawing.Size(189, 33);
             this.txtKode.TabIndex = 28;
             this.txtKode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtKode.TextChanged += new System.EventHandler(this.txtKode_TextChanged);
@@ -168,7 +168,7 @@
             this.txtNama.Location = new System.Drawing.Point(216, 270);
             this.txtNama.Name = "txtNama";
             this.txtNama.ReadOnly = true;
-            this.txtNama.Size = new System.Drawing.Size(207, 33);
+            this.txtNama.Size = new System.Drawing.Size(275, 33);
             this.txtNama.TabIndex = 29;
             this.txtNama.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtNama.TextChanged += new System.EventHandler(this.txtNama_TextChanged);
@@ -179,7 +179,7 @@
             this.txtHarga.Location = new System.Drawing.Point(216, 326);
             this.txtHarga.Name = "txtHarga";
             this.txtHarga.ReadOnly = true;
-            this.txtHarga.Size = new System.Drawing.Size(207, 33);
+            this.txtHarga.Size = new System.Drawing.Size(189, 33);
             this.txtHarga.TabIndex = 30;
             this.txtHarga.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtHarga.TextChanged += new System.EventHandler(this.txtHarga_TextChanged);
@@ -190,7 +190,7 @@
             this.txtStok.Location = new System.Drawing.Point(216, 378);
             this.txtStok.Name = "txtStok";
             this.txtStok.ReadOnly = true;
-            this.txtStok.Size = new System.Drawing.Size(207, 33);
+            this.txtStok.Size = new System.Drawing.Size(189, 33);
             this.txtStok.TabIndex = 31;
             this.txtStok.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtStok.TextChanged += new System.EventHandler(this.txtStok_TextChanged);
@@ -281,16 +281,10 @@
             this.txtTotal.TabIndex = 39;
             this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // dtpTransaksi
-            // 
-            this.dtpTransaksi.Location = new System.Drawing.Point(714, 263);
-            this.dtpTransaksi.Name = "dtpTransaksi";
-            this.dtpTransaksi.Size = new System.Drawing.Size(200, 22);
-            this.dtpTransaksi.TabIndex = 40;
-            // 
             // btnSimpanJual
             // 
             this.btnSimpanJual.BackColor = System.Drawing.Color.Coral;
+            this.btnSimpanJual.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSimpanJual.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSimpanJual.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSimpanJual.ForeColor = System.Drawing.Color.White;
@@ -305,6 +299,7 @@
             // btnHitung
             // 
             this.btnHitung.BackColor = System.Drawing.Color.Coral;
+            this.btnHitung.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnHitung.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnHitung.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHitung.ForeColor = System.Drawing.Color.White;
@@ -316,6 +311,14 @@
             this.btnHitung.UseVisualStyleBackColor = false;
             this.btnHitung.Click += new System.EventHandler(this.btnHitung_Click);
             // 
+            // txtTanggal
+            // 
+            this.txtTanggal.Location = new System.Drawing.Point(714, 263);
+            this.txtTanggal.Name = "txtTanggal";
+            this.txtTanggal.ReadOnly = true;
+            this.txtTanggal.Size = new System.Drawing.Size(200, 22);
+            this.txtTanggal.TabIndex = 43;
+            // 
             // FormTransaksi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -323,9 +326,9 @@
             this.BackColor = System.Drawing.Color.DodgerBlue;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(952, 540);
+            this.Controls.Add(this.txtTanggal);
             this.Controls.Add(this.btnHitung);
             this.Controls.Add(this.btnSimpanJual);
-            this.Controls.Add(this.dtpTransaksi);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -378,8 +381,8 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtTotal;
-        private System.Windows.Forms.DateTimePicker dtpTransaksi;
         private System.Windows.Forms.Button btnSimpanJual;
         private System.Windows.Forms.Button btnHitung;
+        private System.Windows.Forms.TextBox txtTanggal;
     }
 }

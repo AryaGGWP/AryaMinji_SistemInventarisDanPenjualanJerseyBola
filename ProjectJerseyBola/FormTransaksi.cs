@@ -8,14 +8,22 @@ namespace ProjectJerseyBola
     {
         string connectionString = @"Data Source=IDEAPAD-ARYA\BANGDIO; Initial Catalog=DB_Jersey; User ID=sa; Password=123; TrustServerCertificate=True";
 
-        public FormTransaksi()
+        // --- TAMBAHAN: Variabel buat nampung ID Admin ---
+        public int idKasir;
+
+        public FormTransaksi(int idTerima)
         {
             InitializeComponent();
+
+            // ID dari Menu Utama!
+            this.idKasir = idTerima;
+
             IsiComboBoxJersey();
             txtKode.ReadOnly = true;
             txtNama.ReadOnly = true;
             txtHarga.ReadOnly = true;
             txtStok.ReadOnly = true;
+            txtTanggal.Text = DateTime.Now.ToString("dd MMMM yyyy HH:mm:ss");
         }
 
         // --- METHOD BANTUAN ---
@@ -126,10 +134,10 @@ namespace ProjectJerseyBola
             txtTotal.Text = (hargaSatuan * jumlahBeli).ToString();
         }
 
-        // --- TOMBOL SIMPAN TRANSAKSI ---
+        // --- TOMBOL SIMPAN TRANSAKSI (COMBO UPDATE STOK + INSERT RIWAYAT) ---
         private void btnSimpanJual_Click(object sender, EventArgs e)
         {
-            if (txtKode.Text == "" || txtJumlah.Text == "")
+            if (txtKode.Text == "" || txtJumlah.Text == "" || txtTotal.Text == "")
             {
                 MessageBox.Show("Hitung dulu transaksinya cuy sebelum disave!", "Peringatan");
                 return;
@@ -139,13 +147,27 @@ namespace ProjectJerseyBola
             try
             {
                 conn.Open();
-                string query = "UPDATE Jersey SET Stok = Stok - @jumlah WHERE KodeJersey = @kode";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@jumlah", int.Parse(txtJumlah.Text));
-                cmd.Parameters.AddWithValue("@kode", txtKode.Text);
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Transaksi Berhasil! Stok Jersey otomatis berkurang.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // MENGURANGI STOK JERSEY
+                string queryUpdate = "UPDATE Jersey SET Stok = Stok - @jumlah WHERE KodeJersey = @kode";
+                SqlCommand cmdUpdate = new SqlCommand(queryUpdate, conn);
+                cmdUpdate.Parameters.AddWithValue("@jumlah", int.Parse(txtJumlah.Text));
+                cmdUpdate.Parameters.AddWithValue("@kode", txtKode.Text);
+
+                cmdUpdate.ExecuteNonQuery(); // Eksekusi jurus 1
+
+                // --- REVISI: INSERT DATA KE TABEL PENJUALAN + IDADMIN ---
+                string queryInsert = "INSERT INTO Penjualan (KodeJersey, Tanggal, Jumlah, TotalHarga, IDAdmin) VALUES (@kode, @tanggal, @jumlah, @total, @idAdmin)";
+                SqlCommand cmdInsert = new SqlCommand(queryInsert, conn);
+                cmdInsert.Parameters.AddWithValue("@kode", txtKode.Text);
+                cmdInsert.Parameters.AddWithValue("@tanggal", DateTime.Now);
+                cmdInsert.Parameters.AddWithValue("@jumlah", int.Parse(txtJumlah.Text));
+                cmdInsert.Parameters.AddWithValue("@total", int.Parse(txtTotal.Text));
+                cmdInsert.Parameters.AddWithValue("@idAdmin", idKasir); // <--- INI DIA!
+
+                cmdInsert.ExecuteNonQuery(); // Eksekusi jurus 2
+
+                MessageBox.Show("Transaksi Berhasil!\nRiwayat transaksi tersimpan ke database.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 BersihkanTransaksi();
                 IsiComboBoxJersey();

@@ -216,5 +216,10 @@ namespace ProjectJerseyBola
                 conn.Close();
             }
         }
+
+        private void txtHarga_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

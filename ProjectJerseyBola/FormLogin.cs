@@ -45,33 +45,37 @@ namespace ProjectJerseyBola
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-                if (txtUsername.Text == "" || txtPassword.Text == "")
+            // Validasi tetep aman punya lu
+            if (txtUsername.Text == "" || txtPassword.Text == "")
             {
                 MessageBox.Show("Username dan Password nggak boleh kosong cuy!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; 
+                return;
             }
+
             string connectionString = @"Data Source=IDEAPAD-ARYA\BANGDIO; Initial Catalog=DB_Jersey; User ID=sa; Password=123; TrustServerCertificate=True";
             SqlConnection conn = new SqlConnection(connectionString);
 
             try
             {
                 conn.Open();
-                string query = "SELECT COUNT(*) FROM Admin WHERE Username = @username AND Password = @password";
+                // REVISI 1: Ganti COUNT(*) jadi IDAdmin
+                string query = "SELECT IDAdmin FROM Admin WHERE Username = @username AND Password = @password";
                 SqlCommand cmd = new SqlCommand(query, conn);
 
                 cmd.Parameters.AddWithValue("@username", txtUsername.Text);
                 cmd.Parameters.AddWithValue("@password", txtPassword.Text);
+                object result = cmd.ExecuteScalar();
 
-                int result = (int)cmd.ExecuteScalar();
-
-                if (result > 0)
+                if (result != null) 
                 {
-                    MessageBox.Show("Selamat datang di Toko Jersey!!.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    FormMenuUtama menu = new FormMenuUtama();
+                    int idAdminLogin = Convert.ToInt32(result);
+
+                    MessageBox.Show("Selamat datang di Minji Sport.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    FormMenuUtama menu = new FormMenuUtama(idAdminLogin);
                     menu.Show();
                     this.Hide();
                 }
-                else
+                else 
                 {
                     MessageBox.Show("Username atau Password salah, coba ingat-ingat lagi!", "Gagal Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
