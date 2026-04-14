@@ -44,6 +44,7 @@
             // btnCekKoneksi
             // 
             this.btnCekKoneksi.BackColor = System.Drawing.Color.Coral;
+            this.btnCekKoneksi.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCekKoneksi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCekKoneksi.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCekKoneksi.ForeColor = System.Drawing.Color.White;
@@ -58,6 +59,7 @@
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.Coral;
+            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.WhiteSmoke;
