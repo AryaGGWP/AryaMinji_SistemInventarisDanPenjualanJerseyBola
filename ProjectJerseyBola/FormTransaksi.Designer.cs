@@ -300,6 +300,7 @@
             this.btnSimpanJual.TabIndex = 41;
             this.btnSimpanJual.Text = "SIMPAN TRANSAKSI";
             this.btnSimpanJual.UseVisualStyleBackColor = false;
+            this.btnSimpanJual.Click += new System.EventHandler(this.btnSimpanJual_Click);
             // 
             // btnHitung
             // 
