@@ -16,5 +16,18 @@ namespace ProjectJerseyBola
         {
             InitializeComponent();
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult konfirmasi = MessageBox.Show("Logout dan kembali ke menu awal?", "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (konfirmasi == DialogResult.Yes)
+            {
+                this.Hide();
+
+                FormLogin login = new FormLogin();
+                login.Show();
+            }
+        }
     }
 }
