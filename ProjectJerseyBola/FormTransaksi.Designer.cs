@@ -83,6 +83,7 @@
             // 
             this.btnKembali.BackColor = System.Drawing.Color.Coral;
             this.btnKembali.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnKembali.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnKembali.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKembali.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.btnKembali.Location = new System.Drawing.Point(27, 486);

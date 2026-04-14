@@ -129,6 +129,7 @@
             // 
             this.btnSimpan.BackColor = System.Drawing.Color.Coral;
             this.btnSimpan.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSimpan.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSimpan.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSimpan.ForeColor = System.Drawing.Color.White;
             this.btnSimpan.Location = new System.Drawing.Point(544, 63);
@@ -143,6 +144,7 @@
             // 
             this.btnUbah.BackColor = System.Drawing.Color.Coral;
             this.btnUbah.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUbah.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUbah.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUbah.ForeColor = System.Drawing.Color.White;
             this.btnUbah.Location = new System.Drawing.Point(544, 137);
@@ -157,6 +159,7 @@
             // 
             this.btnHapus.BackColor = System.Drawing.Color.Coral;
             this.btnHapus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHapus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnHapus.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHapus.ForeColor = System.Drawing.Color.White;
             this.btnHapus.Location = new System.Drawing.Point(733, 63);
@@ -171,6 +174,7 @@
             // 
             this.btnClear.BackColor = System.Drawing.Color.Coral;
             this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClear.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.Color.White;
             this.btnClear.Location = new System.Drawing.Point(733, 133);
@@ -185,6 +189,7 @@
             // 
             this.btnKembali.BackColor = System.Drawing.Color.Coral;
             this.btnKembali.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnKembali.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnKembali.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKembali.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.btnKembali.Location = new System.Drawing.Point(28, 74);
