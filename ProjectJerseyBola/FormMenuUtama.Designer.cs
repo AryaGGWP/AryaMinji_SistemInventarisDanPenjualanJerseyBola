@@ -82,6 +82,7 @@
             this.btnStok.TabIndex = 10;
             this.btnStok.Text = "📦 CEK STOK";
             this.btnStok.UseVisualStyleBackColor = false;
+            this.btnStok.Click += new System.EventHandler(this.btnStok_Click);
             // 
             // btnTransaksi
             // 
@@ -97,6 +98,7 @@
             this.btnTransaksi.TabIndex = 11;
             this.btnTransaksi.Text = "🛒 TRANSAKSI";
             this.btnTransaksi.UseVisualStyleBackColor = false;
+            this.btnTransaksi.Click += new System.EventHandler(this.btnTransaksi_Click);
             // 
             // btnLaporan
             // 
@@ -112,6 +114,7 @@
             this.btnLaporan.TabIndex = 12;
             this.btnLaporan.Text = "📊 LAPORAN";
             this.btnLaporan.UseVisualStyleBackColor = false;
+            this.btnLaporan.Click += new System.EventHandler(this.btnLaporan_Click);
             // 
             // btnLogout
             // 

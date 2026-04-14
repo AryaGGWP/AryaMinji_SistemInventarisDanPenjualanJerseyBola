@@ -38,8 +38,25 @@ namespace ProjectJerseyBola
         private void btnKelola_Click(object sender, EventArgs e)
         {
             FormKelolaJersey kelola = new FormKelolaJersey();
-            kelola.Show(); // Tampilin form kelola
-            this.Hide();   // Sembunyiin menu utama sementara
+            kelola.Show(); 
+            this.Hide(); 
+        }
+
+        private void btnStok_Click(object sender, EventArgs e) // Pastiin nama tombol lu btnStok
+        {
+            FormCekStok cekStok = new FormCekStok();
+            cekStok.Show();
+            this.Hide();
+        }
+
+        private void btnTransaksi_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLaporan_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

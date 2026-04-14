@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjectJerseyBola
@@ -55,10 +49,27 @@ namespace ProjectJerseyBola
         {
 
         }
-
         private void txtCari_TextChanged(object sender, EventArgs e)
         {
-
+            SqlConnection conn = new SqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                // Bisa nyari berdasarkan Kode, Nama, atau Klub
+                string query = "SELECT * FROM Jersey WHERE NamaJersey LIKE '%" + txtCari.Text + "%' OR Klub LIKE '%" + txtCari.Text + "%' OR KodeJersey LIKE '%" + txtCari.Text + "%'";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgvCekStok.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Tidak ada jersey dalam stok." + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

@@ -325,7 +325,7 @@
             // 
             this.txtCari.BackColor = System.Drawing.Color.White;
             this.txtCari.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCari.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtCari.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtCari.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCari.Location = new System.Drawing.Point(812, 201);
             this.txtCari.Name = "txtCari";
