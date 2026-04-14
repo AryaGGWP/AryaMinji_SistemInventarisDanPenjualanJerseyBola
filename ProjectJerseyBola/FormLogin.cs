@@ -45,7 +45,7 @@ namespace ProjectJerseyBola
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (txtUsername.Text == "" || txtPassword.Text == "")
+                if (txtUsername.Text == "" || txtPassword.Text == "")
             {
                 MessageBox.Show("Username dan Password nggak boleh kosong cuy!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return; 
@@ -67,6 +67,9 @@ namespace ProjectJerseyBola
                 if (result > 0)
                 {
                     MessageBox.Show("Selamat datang di Toko Jersey!!.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    FormMenuUtama menu = new FormMenuUtama();
+                    menu.Show();
+                    this.Hide();
                 }
                 else
                 {

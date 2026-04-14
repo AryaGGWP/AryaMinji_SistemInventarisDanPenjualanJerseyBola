@@ -29,5 +29,17 @@ namespace ProjectJerseyBola
                 login.Show();
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnKelola_Click(object sender, EventArgs e)
+        {
+            FormKelolaJersey kelola = new FormKelolaJersey();
+            kelola.Show(); // Tampilin form kelola
+            this.Hide();   // Sembunyiin menu utama sementara
+        }
     }
 }

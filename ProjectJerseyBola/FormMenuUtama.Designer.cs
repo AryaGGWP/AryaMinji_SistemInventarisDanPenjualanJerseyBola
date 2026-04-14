@@ -36,6 +36,7 @@
             this.btnTransaksi = new System.Windows.Forms.Button();
             this.btnLaporan = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label3
@@ -47,9 +48,9 @@
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(12, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(287, 50);
+            this.label3.Size = new System.Drawing.Size(405, 50);
             this.label3.TabIndex = 7;
-            this.label3.Text = "MINJI SPORT";
+            this.label3.Text = "🐰 MINJI SPORT ⚽";
             // 
             // label1
             // 
@@ -62,6 +63,7 @@
             this.label1.Size = new System.Drawing.Size(269, 50);
             this.label1.TabIndex = 8;
             this.label1.Text = "Menu Utama";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnKelola
             // 
@@ -77,6 +79,7 @@
             this.btnKelola.TabIndex = 9;
             this.btnKelola.Text = "👕 KELOLA JERSEY";
             this.btnKelola.UseVisualStyleBackColor = false;
+            this.btnKelola.Click += new System.EventHandler(this.btnKelola_Click);
             // 
             // btnStok
             // 
@@ -133,19 +136,32 @@
             this.btnLogout.ForeColor = System.Drawing.Color.White;
             this.btnLogout.Location = new System.Drawing.Point(21, 459);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(117, 50);
+            this.btnLogout.Size = new System.Drawing.Size(162, 50);
             this.btnLogout.TabIndex = 13;
             this.btnLogout.Text = "🚪 LOGOUT";
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label2.Font = new System.Drawing.Font("Rockwell", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(279, 239);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 50);
+            this.label2.TabIndex = 14;
+            // 
             // FormMenuUtama
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.BackColor = System.Drawing.Color.DodgerBlue;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(963, 529);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnLaporan);
             this.Controls.Add(this.btnTransaksi);
@@ -171,5 +187,6 @@
         private System.Windows.Forms.Button btnTransaksi;
         private System.Windows.Forms.Button btnLaporan;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Label label2;
     }
 }

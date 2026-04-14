@@ -41,10 +41,10 @@
             // 
             // btnCekKoneksi
             // 
-            this.btnCekKoneksi.BackColor = System.Drawing.SystemColors.Info;
+            this.btnCekKoneksi.BackColor = System.Drawing.Color.Coral;
             this.btnCekKoneksi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCekKoneksi.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCekKoneksi.ForeColor = System.Drawing.Color.Black;
+            this.btnCekKoneksi.ForeColor = System.Drawing.Color.White;
             this.btnCekKoneksi.Location = new System.Drawing.Point(432, 387);
             this.btnCekKoneksi.Name = "btnCekKoneksi";
             this.btnCekKoneksi.Size = new System.Drawing.Size(135, 35);
@@ -55,12 +55,13 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.BackColor = System.Drawing.SystemColors.Info;
+            this.btnLogin.BackColor = System.Drawing.Color.Coral;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLogin.Font = new System.Drawing.Font("Microsoft YaHei", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(415, 296);
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnLogin.Location = new System.Drawing.Point(421, 301);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(166, 49);
+            this.btnLogin.Size = new System.Drawing.Size(159, 42);
             this.btnLogin.TabIndex = 1;
             this.btnLogin.Text = "LOGIN";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -71,7 +72,7 @@
             this.txtUsername.Font = new System.Drawing.Font("Microsoft YaHei", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.Location = new System.Drawing.Point(347, 161);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(299, 38);
+            this.txtUsername.Size = new System.Drawing.Size(290, 38);
             this.txtUsername.TabIndex = 2;
             this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -132,16 +133,16 @@
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(12, 464);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(287, 50);
+            this.label4.Size = new System.Drawing.Size(405, 50);
             this.label4.TabIndex = 7;
-            this.label4.Text = "MINJI SPORT";
+            this.label4.Text = "🐰 MINJI SPORT ⚽";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.BackColor = System.Drawing.Color.DodgerBlue;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(973, 523);
             this.Controls.Add(this.label4);
