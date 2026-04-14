@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormCekStok.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCekStok.Designer.cs">
+      <DependentUpon>FormCekStok.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormKelolaJersey.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     <Compile Include="Koneksi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormCekStok.resx">
+      <DependentUpon>FormCekStok.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormKelolaJersey.resx">
       <DependentUpon>FormKelolaJersey.cs</DependentUpon>
     </EmbeddedResource>

@@ -175,8 +175,8 @@ namespace ProjectJerseyBola
             this.Close();
         }
 
-        // 6. EVENT KLIK DATA DI TABEL
-        private void dgvJersey_CellClick(object sender, DataGridViewCellEventArgs e)
+        // EVENT KLIK DGV
+        private void dgvJersey_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {

@@ -165,6 +165,7 @@
             this.btnHapus.TabIndex = 8;
             this.btnHapus.Text = "HAPUS";
             this.btnHapus.UseVisualStyleBackColor = false;
+            this.btnHapus.Click += new System.EventHandler(this.btnHapus_Click);
             // 
             // btnClear
             // 
@@ -307,6 +308,7 @@
             this.dgvJersey.RowTemplate.Height = 24;
             this.dgvJersey.Size = new System.Drawing.Size(502, 226);
             this.dgvJersey.TabIndex = 19;
+            this.dgvJersey.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJersey_CellContentClick);
             // 
             // label9
             // 
@@ -325,7 +327,7 @@
             this.txtCari.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCari.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtCari.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCari.Location = new System.Drawing.Point(812, 202);
+            this.txtCari.Location = new System.Drawing.Point(812, 201);
             this.txtCari.Name = "txtCari";
             this.txtCari.Size = new System.Drawing.Size(142, 27);
             this.txtCari.TabIndex = 21;
@@ -336,7 +338,7 @@
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(935, 196);
+            this.label10.Location = new System.Drawing.Point(934, 195);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(19, 16);
             this.label10.TabIndex = 22;

@@ -188,6 +188,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FormLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login-Toko Jersey";
             this.Load += new System.EventHandler(this.FormLogin_Load);
             this.ResumeLayout(false);
