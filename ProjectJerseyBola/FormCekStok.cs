@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,31 @@ namespace ProjectJerseyBola
         public FormCekStok()
         {
             InitializeComponent();
+            TampilkanData();
+        }
+
+        // --- METHOD TAMPIL DATA ---
+        void TampilkanData()
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+                // Nampilin semua data stok jersey
+                string query = "SELECT * FROM Jersey";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgvCekStok.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal nampilin stok: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         private void btnKembali_Click(object sender, EventArgs e)
