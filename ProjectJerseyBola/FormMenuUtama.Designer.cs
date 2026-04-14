@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMenuUtama));
-            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnKelola = new System.Windows.Forms.Button();
             this.btnStok = new System.Windows.Forms.Button();
@@ -37,20 +36,8 @@
             this.btnLaporan = new System.Windows.Forms.Button();
             this.btnLogout = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label3.Font = new System.Drawing.Font("Rockwell", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(12, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(405, 50);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "🐰 MINJI SPORT ⚽";
             // 
             // label1
             // 
@@ -154,6 +141,19 @@
             this.label2.Size = new System.Drawing.Size(0, 50);
             this.label2.TabIndex = 14;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label7.Font = new System.Drawing.Font("Rockwell", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(8, 9);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(405, 50);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "🐰 MINJI SPORT ⚽";
+            // 
             // FormMenuUtama
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -161,6 +161,7 @@
             this.BackColor = System.Drawing.Color.DodgerBlue;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(963, 529);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.btnLaporan);
@@ -168,7 +169,6 @@
             this.Controls.Add(this.btnStok);
             this.Controls.Add(this.btnKelola);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.label3);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormMenuUtama";
@@ -179,8 +179,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnKelola;
         private System.Windows.Forms.Button btnStok;
@@ -188,5 +186,6 @@
         private System.Windows.Forms.Button btnLaporan;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label7;
     }
 }
