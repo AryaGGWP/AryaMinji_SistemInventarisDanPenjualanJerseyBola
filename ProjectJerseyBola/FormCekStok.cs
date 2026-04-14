@@ -44,10 +44,11 @@ namespace ProjectJerseyBola
                 conn.Close();
             }
         }
-
         private void btnKembali_Click(object sender, EventArgs e)
         {
-
+            FormMenuUtama menu = new FormMenuUtama();
+            menu.Show();
+            this.Close();
         }
 
         private void dgvCekStok_CellContentClick(object sender, DataGridViewCellEventArgs e)
