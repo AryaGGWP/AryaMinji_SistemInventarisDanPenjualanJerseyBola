@@ -100,42 +100,57 @@ namespace ProjectJerseyBola
         // 2. TOMBOL UBAH (Edit)
         private void btnUbah_Click(object sender, EventArgs e)
         {
-            if (txtID.Text == "") return; // Gak bisa ubah kalau ID kosong
-
-            SqlConnection conn = new SqlConnection(connectionString);
-            try
+            // Cek dulu ada data yang dipilih nggak
+            if (txtID.Text == "")
             {
-                conn.Open();
-                string query = "UPDATE Jersey SET NamaJersey=@nama, Klub=@klub, Ukuran=@ukuran, Harga=@harga, Stok=@stok WHERE KodeJersey=@kode";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@kode", txtID.Text);
-                cmd.Parameters.AddWithValue("@nama", txtNama.Text);
-                cmd.Parameters.AddWithValue("@klub", txtKlub.Text);
-                cmd.Parameters.AddWithValue("@ukuran", cbUkuran.Text);
-                cmd.Parameters.AddWithValue("@harga", txtHarga.Text);
-                cmd.Parameters.AddWithValue("@stok", txtStok.Text);
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Data Berhasil Diupdate!", "Sukses");
-                TampilkanData();
-                BersihkanForm();
+                MessageBox.Show("Pilih data jersey di tabel dulu yang mau diubah!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            catch (Exception ex)
+
+            DialogResult konfirmasi = MessageBox.Show("Yakin nih data jersey '" + txtNama.Text + "' mau diubah?", "Konfirmasi Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (konfirmasi == DialogResult.Yes)
             {
-                MessageBox.Show("Gagal Update: " + ex.Message);
-            }
-            finally
-            {
-                conn.Close();
+                SqlConnection conn = new SqlConnection(connectionString);
+                try
+                {
+                    conn.Open();
+                    string query = "UPDATE Jersey SET NamaJersey=@nama, Klub=@klub, Harga=@harga, Stok=@stok, Ukuran=@ukuran WHERE KodeJersey=@kode";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@kode", txtID.Text);
+                    cmd.Parameters.AddWithValue("@nama", txtNama.Text);
+                    cmd.Parameters.AddWithValue("@klub", txtKlub.Text);
+                    cmd.Parameters.AddWithValue("@harga", int.Parse(txtHarga.Text));
+                    cmd.Parameters.AddWithValue("@stok", int.Parse(txtStok.Text));
+                    cmd.Parameters.AddWithValue("@ukuran", cbUkuran.Text);
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Mantap! Data jersey berhasil diupdate.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    TampilkanData();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Gagal update data: " + ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
             }
         }
 
         // 3. TOMBOL HAPUS (Delete)
         private void btnHapus_Click(object sender, EventArgs e)
         {
-            if (txtID.Text == "") return;
+            if (txtID.Text == "")
+            {
+                MessageBox.Show("Pilih data jersey di tabel dulu yang mau dihapus!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            if (MessageBox.Show("Yakin mau hapus jersey ini?", "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            DialogResult konfirmasi = MessageBox.Show("HATI-HATI! Yakin mau hapus jersey '" + txtNama.Text + "' selamanya?", "Konfirmasi Hapus", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (konfirmasi == DialogResult.Yes)
             {
                 SqlConnection conn = new SqlConnection(connectionString);
                 try
@@ -146,13 +161,23 @@ namespace ProjectJerseyBola
                     cmd.Parameters.AddWithValue("@kode", txtID.Text);
 
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Data Berhasil Dihapus!");
+                    MessageBox.Show("Data jersey berhasil dihapus.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     TampilkanData();
-                    BersihkanForm();
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547)
+                    {
+                        MessageBox.Show("Waduh, Jersey ini nggak bisa dihapus karena udah ada di Riwayat Penjualan!\n\nSolusi: Kalau barangnya udah nggak dijual lagi, cukup tekan tombol UBAH dan jadikan Stoknya = 0.", "Gagal Hapus (Data Terpakai)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Gagal hapus data: " + ex.Message, "Error Database");
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Gagal Hapus: " + ex.Message);
+                    MessageBox.Show("Ada error sistem: " + ex.Message);
                 }
                 finally
                 {
@@ -194,7 +219,7 @@ namespace ProjectJerseyBola
             }
         }
 
-        // 7. EVENT PENCARIAN (LIVE SEARCH)
+        // 7. EVENT PENCARIAN
         private void txtCari_TextChanged(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(connectionString);
