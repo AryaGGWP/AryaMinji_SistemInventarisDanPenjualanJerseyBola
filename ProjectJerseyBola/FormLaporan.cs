@@ -17,24 +17,16 @@ namespace ProjectJerseyBola
             TampilDataLaporan(); 
         }
 
-        // --- METHOD TAMPIL DATA (DIBIKIN CANTIK PAKE JOIN) ---
+        // --- METHOD TAMPIL DATA ---
         void TampilDataLaporan()
         {
             SqlConnection conn = new SqlConnection(connectionString);
             try
             {
                 conn.Open();
-                string query = @"SELECT 
-                                    p.IDJual AS [ID Transaksi], 
-                                    p.Tanggal AS [Waktu Transaksi], 
-                                    j.NamaJersey AS [Nama Barang], 
-                                    p.Jumlah AS [Qty], 
-                                    p.TotalHarga AS [Total (Rp)], 
-                                    a.Username AS [Kasir]
-                                 FROM Penjualan p
-                                 JOIN Jersey j ON p.KodeJersey = j.KodeJersey
-                                 LEFT JOIN Admin a ON p.IDAdmin = a.IDAdmin
-                                 ORDER BY p.Tanggal DESC"; 
+
+                // NAH INI DIA YANG BERUBAH, JADI PENDEK BANGET KAN?
+                string query = "SELECT * FROM vw_LaporanPenjualan ORDER BY [Waktu Transaksi] DESC";
 
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
@@ -100,7 +92,6 @@ namespace ProjectJerseyBola
                             pdfTable.WidthPercentage = 100;
                             pdfTable.HorizontalAlignment = Element.ALIGN_LEFT;
 
-                            // 1. Masukin Header (Judul Kolom)
                             foreach (DataGridViewColumn column in dgvLaporan.Columns)
                             {
                                 PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
