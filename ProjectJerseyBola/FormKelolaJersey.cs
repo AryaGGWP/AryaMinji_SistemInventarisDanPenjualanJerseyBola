@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace ProjectJerseyBola
 {
     public partial class FormKelolaJersey : Form
     {
         string connectionString = @"Data Source=IDEAPAD-ARYA\BANGDIO; Initial Catalog=DB_Jersey; User ID=sa; Password=123; TrustServerCertificate=True";
+
+        // --- TAMBAHAN UCP 2: Variabel buat Binding ---
+        BindingSource bs = new BindingSource();
 
         public FormKelolaJersey()
         {
@@ -29,13 +26,12 @@ namespace ProjectJerseyBola
             try
             {
                 conn.Open();
-                // view
+                // REVISI UCP 2: Pake VIEW
                 string query = "SELECT * FROM vw_DataJersey";
 
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                dgvJersey.DataSource = dt;
             }
             catch (Exception ex)
             {
@@ -54,44 +50,48 @@ namespace ProjectJerseyBola
             txtKlub.Clear();
             txtHarga.Clear();
             txtStok.Clear();
-            cbUkuran.SelectedIndex = -1; // Kosongin combobox
-            txtID.Focus(); // Bikin kursor kedip-kedip otomatis di kolom ID
+            cbUkuran.SelectedIndex = -1;
+            txtID.Focus();
         }
 
-        // --- KODINGAN TOMBOL-TOMBOL ---
-
-        // 1. TOMBOL SIMPAN
-        private void btnSimpan_Click(object sender, EventArgs e)
+        // --- REVISI UCP 2: METHOD SUPER UNTUK EKSEKUSI STORED PROCEDURE ---
+        void EksekusiSP_ManageJersey(string aksi)
         {
-            
-            if (txtID.Text == "" || txtNama.Text == "" || cbUkuran.Text == "")
-            {
-                MessageBox.Show("Data belum lengkap cuy!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             SqlConnection conn = new SqlConnection(connectionString);
             try
             {
                 conn.Open();
-                string query = "INSERT INTO Jersey (KodeJersey, NamaJersey, Klub, Ukuran, Harga, Stok) " +
-                               "VALUES (@kode, @nama, @klub, @ukuran, @harga, @stok)";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@kode", txtID.Text);
-                cmd.Parameters.AddWithValue("@nama", txtNama.Text);
-                cmd.Parameters.AddWithValue("@klub", txtKlub.Text);
-                cmd.Parameters.AddWithValue("@ukuran", cbUkuran.Text);
-                cmd.Parameters.AddWithValue("@harga", txtHarga.Text);
-                cmd.Parameters.AddWithValue("@stok", txtStok.Text);
+                SqlCommand cmd = new SqlCommand("sp_ManageJersey", conn);
+                cmd.CommandType = CommandType.StoredProcedure; // Kasih tau SQL kalau ini SP
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Data Berhasil Disimpan!", "Sukses");
+                // Parameter wajib
+                cmd.Parameters.AddWithValue("@Action", aksi);
+                cmd.Parameters.AddWithValue("@Kode", txtID.Text);
+
+                // Kalau Hapus, cuma butuh Kode. Kalau Insert/Update butuh semuanya.
+                if (aksi != "DELETE")
+                {
+                    cmd.Parameters.AddWithValue("@Nama", txtNama.Text);
+                    cmd.Parameters.AddWithValue("@Klub", txtKlub.Text);
+                    cmd.Parameters.AddWithValue("@Harga", int.Parse(txtHarga.Text));
+                    cmd.Parameters.AddWithValue("@Stok", int.Parse(txtStok.Text));
+                    cmd.Parameters.AddWithValue("@Ukuran", cbUkuran.Text);
+                }
+
+                cmd.ExecuteNonQuery(); // DOR! Tembak ke database
+
+                MessageBox.Show("Mantap! Aksi " + aksi + " berhasil cuy.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 TampilkanData();
                 BersihkanForm();
             }
+            catch (SqlException ex)
+            {
+                // Nangkep pesan error lemparan dari THROW di Stored Procedure
+                MessageBox.Show("Gagal eksekusi ke database:\n" + ex.Message, "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (Exception ex)
             {
-                MessageBox.Show("Gagal Simpan (Mungkin ID/Kode udah ada): " + ex.Message);
+                MessageBox.Show("Ada error sistem: " + ex.Message, "Error Sistem");
             }
             finally
             {
@@ -99,10 +99,22 @@ namespace ProjectJerseyBola
             }
         }
 
-        // 2. TOMBOL UBAH (Edit)
+        // --- KODINGAN TOMBOL-TOMBOL ---
+
+        // 1. TOMBOL SIMPAN (Panggil SP INSERT)
+        private void btnSimpan_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text == "" || txtNama.Text == "" || cbUkuran.Text == "" || txtHarga.Text == "" || txtStok.Text == "")
+            {
+                MessageBox.Show("Data belum lengkap cuy!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            EksekusiSP_ManageJersey("INSERT");
+        }
+
+        // 2. TOMBOL UBAH (Panggil SP UPDATE)
         private void btnUbah_Click(object sender, EventArgs e)
         {
-            // Cek dulu ada data yang dipilih nggak
             if (txtID.Text == "")
             {
                 MessageBox.Show("Pilih data jersey di tabel dulu yang mau diubah!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -110,38 +122,13 @@ namespace ProjectJerseyBola
             }
 
             DialogResult konfirmasi = MessageBox.Show("Yakin nih data jersey '" + txtNama.Text + "' mau diubah?", "Konfirmasi Edit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
             if (konfirmasi == DialogResult.Yes)
             {
-                SqlConnection conn = new SqlConnection(connectionString);
-                try
-                {
-                    conn.Open();
-                    string query = "UPDATE Jersey SET NamaJersey=@nama, Klub=@klub, Harga=@harga, Stok=@stok, Ukuran=@ukuran WHERE KodeJersey=@kode";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@kode", txtID.Text);
-                    cmd.Parameters.AddWithValue("@nama", txtNama.Text);
-                    cmd.Parameters.AddWithValue("@klub", txtKlub.Text);
-                    cmd.Parameters.AddWithValue("@harga", int.Parse(txtHarga.Text));
-                    cmd.Parameters.AddWithValue("@stok", int.Parse(txtStok.Text));
-                    cmd.Parameters.AddWithValue("@ukuran", cbUkuran.Text);
-
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Mantap! Data jersey berhasil diupdate.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    TampilkanData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Gagal update data: " + ex.Message);
-                }
-                finally
-                {
-                    conn.Close();
-                }
+                EksekusiSP_ManageJersey("UPDATE");
             }
         }
 
-        // 3. TOMBOL HAPUS (Delete)
+        // 3. TOMBOL HAPUS (Panggil SP DELETE)
         private void btnHapus_Click(object sender, EventArgs e)
         {
             if (txtID.Text == "")
@@ -151,40 +138,9 @@ namespace ProjectJerseyBola
             }
 
             DialogResult konfirmasi = MessageBox.Show("HATI-HATI! Yakin mau hapus jersey '" + txtNama.Text + "' selamanya?", "Konfirmasi Hapus", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
             if (konfirmasi == DialogResult.Yes)
             {
-                SqlConnection conn = new SqlConnection(connectionString);
-                try
-                {
-                    conn.Open();
-                    string query = "DELETE FROM Jersey WHERE KodeJersey=@kode";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@kode", txtID.Text);
-
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Data jersey berhasil dihapus.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    TampilkanData();
-                }
-                catch (SqlException ex)
-                {
-                    if (ex.Number == 547)
-                    {
-                        MessageBox.Show("Waduh, Jersey ini nggak bisa dihapus karena udah ada di Riwayat Penjualan!\n\nSolusi: Kalau barangnya udah nggak dijual lagi, cukup tekan tombol UBAH dan jadikan Stoknya = 0.", "Gagal Hapus (Data Terpakai)", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Gagal hapus data: " + ex.Message, "Error Database");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ada error sistem: " + ex.Message);
-                }
-                finally
-                {
-                    conn.Close();
-                }
+                EksekusiSP_ManageJersey("DELETE");
             }
         }
 
@@ -211,9 +167,9 @@ namespace ProjectJerseyBola
                 txtID.Text = row.Cells["KodeJersey"].Value.ToString();
                 txtNama.Text = row.Cells["NamaJersey"].Value.ToString();
                 txtKlub.Text = row.Cells["Klub"].Value.ToString();
-                cbUkuran.Text = row.Cells["Ukuran"].Value.ToString();
                 txtHarga.Text = row.Cells["Harga"].Value.ToString();
                 txtStok.Text = row.Cells["Stok"].Value.ToString();
+                cbUkuran.Text = row.Cells["Ukuran"].Value.ToString();
             }
             catch
             {
@@ -221,18 +177,23 @@ namespace ProjectJerseyBola
             }
         }
 
-        // 7. EVENT PENCARIAN
+        // 7. EVENT PENCARIAN (Panggil SP Search dari Form Cek Stok)
         private void txtCari_TextChanged(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(connectionString);
             try
             {
                 conn.Open();
-                string query = "SELECT * FROM Jersey WHERE NamaJersey LIKE '%" + txtCari.Text + "%' OR Klub LIKE '%" + txtCari.Text + "%' OR KodeJersey LIKE '%" + txtCari.Text + "%'";
-                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                // REVISI UCP 2: Pake Stored Procedure
+                SqlCommand cmd = new SqlCommand("sp_CariJersey", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Keyword", txtCari.Text);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-                dgvJersey.DataSource = dt;
+                bs.DataSource = dt; // Update BindingSource
+                dgvJersey.DataSource = bs;
             }
             catch (Exception ex)
             {
@@ -244,10 +205,7 @@ namespace ProjectJerseyBola
             }
         }
 
-        private void txtHarga_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        private void txtHarga_TextChanged(object sender, EventArgs e) { }
 
         private void txtHarga_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -262,8 +220,12 @@ namespace ProjectJerseyBola
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                e.Handled = true; 
+                e.Handled = true;
             }
+        }
+
+        private void txtNama_KeyPress(object sender, KeyPressEventArgs e)
+        {
         }
     }
 }
