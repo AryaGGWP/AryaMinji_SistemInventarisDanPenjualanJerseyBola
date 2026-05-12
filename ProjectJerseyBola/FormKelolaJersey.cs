@@ -29,7 +29,9 @@ namespace ProjectJerseyBola
             try
             {
                 conn.Open();
-                string query = "SELECT * FROM Jersey";
+                // view
+                string query = "SELECT * FROM vw_DataJersey";
+
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

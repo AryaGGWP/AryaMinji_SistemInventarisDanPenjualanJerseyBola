@@ -25,7 +25,7 @@ namespace ProjectJerseyBola
             {
                 conn.Open();
 
-                // NAH INI DIA YANG BERUBAH, JADI PENDEK BANGET KAN?
+                // view
                 string query = "SELECT * FROM vw_LaporanPenjualan ORDER BY [Waktu Transaksi] DESC";
 
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
