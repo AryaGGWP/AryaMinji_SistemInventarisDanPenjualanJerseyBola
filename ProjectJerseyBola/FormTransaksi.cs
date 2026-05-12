@@ -33,7 +33,8 @@ namespace ProjectJerseyBola
             try
             {
                 conn.Open();
-                string query = "SELECT KodeJersey, NamaJersey FROM Jersey";
+                // memanggil VIEW
+                string query = "SELECT KodeJersey, NamaJersey FROM vw_DataJersey";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader dr = cmd.ExecuteReader();
 
@@ -82,7 +83,8 @@ namespace ProjectJerseyBola
             try
             {
                 conn.Open();
-                string query = "SELECT * FROM Jersey WHERE KodeJersey = @kode";
+                // memanggil VIEW
+                string query = "SELECT * FROM vw_DataJersey WHERE KodeJersey = @kode";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@kode", kodeDipilih);
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -148,7 +150,7 @@ namespace ProjectJerseyBola
             {
                 conn.Open();
 
-                // MENGURANGI STOK JERSEY
+                // MENGURANGI STOK JERSEY (Tetap pakai tabel asli)
                 string queryUpdate = "UPDATE Jersey SET Stok = Stok - @jumlah WHERE KodeJersey = @kode";
                 SqlCommand cmdUpdate = new SqlCommand(queryUpdate, conn);
                 cmdUpdate.Parameters.AddWithValue("@jumlah", int.Parse(txtJumlah.Text));
@@ -156,7 +158,7 @@ namespace ProjectJerseyBola
 
                 cmdUpdate.ExecuteNonQuery(); // Eksekusi jurus 1
 
-                // --- REVISI: INSERT DATA KE TABEL PENJUALAN + IDADMIN ---
+                // INSERT DATA KE TABEL PENJUALAN + IDADMIN (Tetap pakai tabel asli)
                 string queryInsert = "INSERT INTO Penjualan (KodeJersey, Tanggal, Jumlah, TotalHarga, IDAdmin) VALUES (@kode, @tanggal, @jumlah, @total, @idAdmin)";
                 SqlCommand cmdInsert = new SqlCommand(queryInsert, conn);
                 cmdInsert.Parameters.AddWithValue("@kode", txtKode.Text);
