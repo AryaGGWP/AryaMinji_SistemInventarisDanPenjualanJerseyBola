@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Data.SqlClient; // Wajib masuk
+using System.Data;
 
 namespace ProjectJerseyBola
 {
@@ -136,7 +137,7 @@ namespace ProjectJerseyBola
             txtTotal.Text = (hargaSatuan * jumlahBeli).ToString();
         }
 
-        // --- TOMBOL SIMPAN TRANSAKSI (COMBO UPDATE STOK + INSERT RIWAYAT) ---
+        // --- TOMBOL SIMPAN TRANSAKSI  ---
         private void btnSimpanJual_Click(object sender, EventArgs e)
         {
             if (txtKode.Text == "" || txtJumlah.Text == "" || txtTotal.Text == "")
@@ -150,24 +151,16 @@ namespace ProjectJerseyBola
             {
                 conn.Open();
 
-                // MENGURANGI STOK JERSEY (Tetap pakai tabel asli)
-                string queryUpdate = "UPDATE Jersey SET Stok = Stok - @jumlah WHERE KodeJersey = @kode";
-                SqlCommand cmdUpdate = new SqlCommand(queryUpdate, conn);
-                cmdUpdate.Parameters.AddWithValue("@jumlah", int.Parse(txtJumlah.Text));
-                cmdUpdate.Parameters.AddWithValue("@kode", txtKode.Text);
+                // MEMANGGIL SP TRANSAKSI (Update Stok + Insert Riwayat pake TRANSACTION)
+                SqlCommand cmd = new SqlCommand("sp_SimpanTransaksi", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                cmdUpdate.ExecuteNonQuery(); // Eksekusi jurus 1
+                cmd.Parameters.AddWithValue("@Kode", txtKode.Text);
+                cmd.Parameters.AddWithValue("@Qty", int.Parse(txtJumlah.Text));
+                cmd.Parameters.AddWithValue("@Total", int.Parse(txtTotal.Text));
+                cmd.Parameters.AddWithValue("@IDAdmin", idKasir);
 
-                // INSERT DATA KE TABEL PENJUALAN + IDADMIN (Tetap pakai tabel asli)
-                string queryInsert = "INSERT INTO Penjualan (KodeJersey, Tanggal, Jumlah, TotalHarga, IDAdmin) VALUES (@kode, @tanggal, @jumlah, @total, @idAdmin)";
-                SqlCommand cmdInsert = new SqlCommand(queryInsert, conn);
-                cmdInsert.Parameters.AddWithValue("@kode", txtKode.Text);
-                cmdInsert.Parameters.AddWithValue("@tanggal", DateTime.Now);
-                cmdInsert.Parameters.AddWithValue("@jumlah", int.Parse(txtJumlah.Text));
-                cmdInsert.Parameters.AddWithValue("@total", int.Parse(txtTotal.Text));
-                cmdInsert.Parameters.AddWithValue("@idAdmin", idKasir); // <--- INI DIA!
-
-                cmdInsert.ExecuteNonQuery(); // Eksekusi jurus 2
+                cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Transaksi Berhasil!\nRiwayat transaksi tersimpan ke database.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
