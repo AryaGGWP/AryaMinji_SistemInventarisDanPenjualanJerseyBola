@@ -248,5 +248,14 @@ namespace ProjectJerseyBola
         {
 
         }
+
+        private void txtHarga_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // validasi harus angka
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
