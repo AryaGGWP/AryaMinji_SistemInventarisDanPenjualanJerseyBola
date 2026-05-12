@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace ProjectJerseyBola
 {
-    public partial class FormCekStok: Form
+    public partial class FormCekStok : Form
     {
         string connectionString = @"Data Source=IDEAPAD-ARYA\BANGDIO; Initial Catalog=DB_Jersey; User ID=sa; Password=123; TrustServerCertificate=True";
 
@@ -15,15 +15,15 @@ namespace ProjectJerseyBola
             TampilkanData();
         }
 
-        // --- METHOD TAMPIL DATA ---
+        // --- METHOD TAMPIL DATA (Pake VIEW) ---
         void TampilkanData()
         {
             SqlConnection conn = new SqlConnection(connectionString);
             try
             {
                 conn.Open();
-                // Nampilin semua data stok jersey
-                string query = "SELECT * FROM Jersey";
+                // REVISI UCP 2: Panggil VIEW (vw_DataJersey)
+                string query = "SELECT * FROM vw_DataJersey";
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -38,6 +38,7 @@ namespace ProjectJerseyBola
                 conn.Close();
             }
         }
+
         private void btnKembali_Click(object sender, EventArgs e)
         {
             FormMenuUtama menu = new FormMenuUtama();
@@ -49,22 +50,28 @@ namespace ProjectJerseyBola
         {
 
         }
+
+        // --- METHOD CARI DATA (Pake STORED PROCEDURE) ---
         private void txtCari_TextChanged(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(connectionString);
             try
             {
                 conn.Open();
-                // Bisa nyari berdasarkan Kode, Nama, atau Klub
-                string query = "SELECT * FROM Jersey WHERE NamaJersey LIKE '%" + txtCari.Text + "%' OR Klub LIKE '%" + txtCari.Text + "%' OR KodeJersey LIKE '%" + txtCari.Text + "%'";
-                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+
+                // STORED PROCEDURE untuk Search
+                SqlCommand cmd = new SqlCommand("sp_CariJersey", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Keyword", txtCari.Text);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dgvCekStok.DataSource = dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Tidak ada jersey dalam stok." + ex.Message);
+                MessageBox.Show("Gagal mencari data: " + ex.Message);
             }
             finally
             {
