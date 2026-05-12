@@ -257,5 +257,13 @@ namespace ProjectJerseyBola
                 e.Handled = true;
             }
         }
+
+        private void txtStok_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; 
+            }
+        }
     }
 }

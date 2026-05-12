@@ -197,5 +197,13 @@ namespace ProjectJerseyBola
         private void txtJumlah_TextChanged(object sender, EventArgs e) { }
         private void txtHarga_TextChanged(object sender, EventArgs e) { }
         private void txtStok_TextChanged(object sender, EventArgs e) { }
+
+        private void txtJumlah_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Kalo bukan angka, event-nya di-cancel (gak bakal muncul di layar)
+            }
+        }
     }
 }

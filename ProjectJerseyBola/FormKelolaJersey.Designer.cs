@@ -241,6 +241,7 @@
             this.txtStok.Name = "txtStok";
             this.txtStok.Size = new System.Drawing.Size(121, 31);
             this.txtStok.TabIndex = 15;
+            this.txtStok.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStok_KeyPress);
             // 
             // cbUkuran
             // 

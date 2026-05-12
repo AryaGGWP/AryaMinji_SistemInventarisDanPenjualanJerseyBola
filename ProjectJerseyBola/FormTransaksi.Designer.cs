@@ -248,6 +248,7 @@
             this.txtJumlah.TabIndex = 36;
             this.txtJumlah.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtJumlah.TextChanged += new System.EventHandler(this.txtJumlah_TextChanged);
+            this.txtJumlah.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtJumlah_KeyPress);
             // 
             // label11
             // 
