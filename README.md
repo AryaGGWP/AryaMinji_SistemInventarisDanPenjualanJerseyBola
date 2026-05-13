@@ -21,4 +21,12 @@ Laporan
 cetak laporan
 <img width="988" height="811" alt="image" src="https://github.com/user-attachments/assets/2fced59c-9960-42b3-a3ab-395199150007" />
 
+### ⚠️ Skenario Demonstrasi SQL Injection
+Pada aplikasi ini, terdapat celah kerentanan **SQL Injection** yang sengaja disisipkan untuk keperluan edukasi dan pemenuhan syarat UCP 2. Celah ini berada pada **Form Laporan** di bagian fitur pencarian nama Kasir.
 
+**Langkah-langkah eksploitasi:**
+1. Login sebagai Admin dan buka menu **Laporan Penjualan**.
+2. Pada kolom pencarian nama Kasir, masukkan Payload berikut:
+   `' OR '1'='1`
+3. Klik tombol Cari.
+4. **Hasil:** Sistem akan mengalami *bypass* logika. Alih-alih mencari nama kasir yang spesifik, database akan menampilkan **SELURUH** riwayat transaksi dari semua kasir karena klausa `WHERE Kasir = '' OR '1'='1'` selalu bernilai True.
