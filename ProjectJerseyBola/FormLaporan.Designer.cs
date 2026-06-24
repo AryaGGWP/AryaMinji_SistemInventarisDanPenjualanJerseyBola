@@ -141,7 +141,6 @@
             this.txtCari.Size = new System.Drawing.Size(171, 31);
             this.txtCari.TabIndex = 27;
             this.txtCari.Text = "Cari nama kasir..🔍";
-            this.txtCari.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // btnCari
             // 

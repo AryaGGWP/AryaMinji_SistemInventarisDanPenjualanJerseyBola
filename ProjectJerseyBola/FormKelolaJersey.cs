@@ -2,6 +2,9 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.IO;
+using ExcelDataReader;
+
 
 namespace ProjectJerseyBola
 {
@@ -60,6 +63,58 @@ namespace ProjectJerseyBola
             txtStok.Clear();
             cbUkuran.SelectedIndex = -1;
             txtID.Focus();
+        }
+
+        // --- METHOD BANTUAN BUAT IMPORT EXCEL KE DB ---
+        void ImportDataKeDB(DataTable dt)
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            int sukses = 0;
+            int gagal = 0;
+
+            try
+            {
+                conn.Open();
+                // Looping baca tiap baris data dari Excel
+                foreach (DataRow row in dt.Rows)
+                {
+                    try
+                    {
+                        // Pakai SP yang udah kita buat di UCP 2!
+                        SqlCommand cmd = new SqlCommand("sp_ManageJersey", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@Action", "INSERT");
+
+                        // Baca data dari kolom Excel (Pastikan nama header Excel sama!)
+                        cmd.Parameters.AddWithValue("@Kode", row["KodeJersey"].ToString());
+                        cmd.Parameters.AddWithValue("@Nama", row["NamaJersey"].ToString());
+                        cmd.Parameters.AddWithValue("@Klub", row["Klub"].ToString());
+                        cmd.Parameters.AddWithValue("@Harga", Convert.ToInt32(row["Harga"]));
+                        cmd.Parameters.AddWithValue("@Stok", Convert.ToInt32(row["Stok"]));
+                        cmd.Parameters.AddWithValue("@Ukuran", row["Ukuran"].ToString());
+
+                        cmd.ExecuteNonQuery();
+                        sukses++; // Hitung yang berhasil
+                    }
+                    catch
+                    {
+                        // Kalau gagal (misal kodenya kembar/duplikat), biarin aja lanjut ke baris berikutnya
+                        gagal++;
+                    }
+                }
+                MessageBox.Show($"Import Selesai!\n\nSukses masuk: {sukses} data\nGagal (Kode Duplikat/Error): {gagal} data", "Laporan Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Refresh DGV pake data asli dari Database
+                TampilkanData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal Import ke DB: " + ex.Message, "Error");
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         // --- REVISI UCP 2: METHOD STORED PROCEDURE ---
@@ -249,6 +304,54 @@ namespace ProjectJerseyBola
         {
             // Kasih komentar biar dia nggak nimpa VIEW
             // this.jerseyTableAdapter.Fill(this.dB_JerseyDataSet.Jersey);
+        }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            // Buka jendela buat milih file Excel
+            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx;*.xls" })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        using (var stream = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read))
+                        {
+                            using (var reader = ExcelReaderFactory.CreateReader(stream))
+                            {
+                                // Konversi data Excel jadi DataSet
+                                var result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                                {
+                                    ConfigureDataTable = (_) => new ExcelDataTableConfiguration() { UseHeaderRow = true }
+                                });
+
+                                // Ambil Sheet pertama
+                                DataTable dtExcel = result.Tables[0];
+
+                                // Tampilkan ke GridView buat Preview
+                                bs.DataSource = dtExcel;
+                                dgvJersey.DataSource = bs;
+
+                                // Tanya User
+                                DialogResult konfirmasi = MessageBox.Show("Data Excel berhasil di-preview di tabel!\n\nMau langsung di-import (simpan permanen) ke Database sekarang?", "Konfirmasi Import", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                                if (konfirmasi == DialogResult.Yes)
+                                {
+                                    ImportDataKeDB(dtExcel); // Lempar ke method penyimpan
+                                }
+                                else
+                                {
+                                    TampilkanData(); // Kalau No, balikin tabel kayak semula
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Waduh, gagal baca Excel cuy! Pastiin file Excelnya lagi gak dibuka di aplikasi Excel ya.\n\nDetail: " + ex.Message, "Error Baca File");
+                    }
+                }
+            }
         }
     }
 }

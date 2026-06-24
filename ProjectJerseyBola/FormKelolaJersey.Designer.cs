@@ -45,6 +45,8 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnKembali = new System.Windows.Forms.Button();
             this.txtID = new System.Windows.Forms.TextBox();
+            this.jerseyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dB_JerseyDataSet = new ProjectJerseyBola.DB_JerseyDataSet();
             this.txtNama = new System.Windows.Forms.TextBox();
             this.txtKlub = new System.Windows.Forms.TextBox();
             this.txtHarga = new System.Windows.Forms.TextBox();
@@ -68,15 +70,14 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.dB_JerseyDataSet = new ProjectJerseyBola.DB_JerseyDataSet();
-            this.jerseyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.jerseyTableAdapter = new ProjectJerseyBola.DB_JerseyDataSetTableAdapters.JerseyTableAdapter();
             this.jerseyBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.btnExcel = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.jerseyBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dB_JerseyDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJersey)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dB_JerseyDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jerseyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jerseyBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -230,6 +231,16 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(210, 31);
             this.txtID.TabIndex = 11;
+            // 
+            // jerseyBindingSource
+            // 
+            this.jerseyBindingSource.DataMember = "Jersey";
+            this.jerseyBindingSource.DataSource = this.dB_JerseyDataSet;
+            // 
+            // dB_JerseyDataSet
+            // 
+            this.dB_JerseyDataSet.DataSetName = "DB_JerseyDataSet";
+            this.dB_JerseyDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // txtNama
             // 
@@ -491,16 +502,6 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
-            // dB_JerseyDataSet
-            // 
-            this.dB_JerseyDataSet.DataSetName = "DB_JerseyDataSet";
-            this.dB_JerseyDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // jerseyBindingSource
-            // 
-            this.jerseyBindingSource.DataMember = "Jersey";
-            this.jerseyBindingSource.DataSource = this.dB_JerseyDataSet;
-            // 
             // jerseyTableAdapter
             // 
             this.jerseyTableAdapter.ClearBeforeFill = true;
@@ -510,6 +511,21 @@
             this.jerseyBindingSource1.DataMember = "Jersey";
             this.jerseyBindingSource1.DataSource = this.dB_JerseyDataSet;
             // 
+            // btnExcel
+            // 
+            this.btnExcel.BackColor = System.Drawing.Color.Coral;
+            this.btnExcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnExcel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExcel.ForeColor = System.Drawing.Color.White;
+            this.btnExcel.Location = new System.Drawing.Point(676, 481);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(257, 44);
+            this.btnExcel.TabIndex = 24;
+            this.btnExcel.Text = "Import From Excel To DB";
+            this.btnExcel.UseVisualStyleBackColor = false;
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
             // FormKelolaJersey
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -517,6 +533,7 @@
             this.BackColor = System.Drawing.Color.DodgerBlue;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(988, 562);
+            this.Controls.Add(this.btnExcel);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtCari);
@@ -547,12 +564,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormKelolaJersey";
             this.Load += new System.EventHandler(this.FormKelolaJersey_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.jerseyBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dB_JerseyDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJersey)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dB_JerseyDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jerseyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jerseyBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -600,5 +617,6 @@
         private System.Windows.Forms.BindingSource jerseyBindingSource;
         private DB_JerseyDataSetTableAdapters.JerseyTableAdapter jerseyTableAdapter;
         private System.Windows.Forms.BindingSource jerseyBindingSource1;
+        private System.Windows.Forms.Button btnExcel;
     }
 }

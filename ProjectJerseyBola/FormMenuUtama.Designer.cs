@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMenuUtama));
             this.label1 = new System.Windows.Forms.Label();
             this.btnKelola = new System.Windows.Forms.Button();
@@ -37,6 +40,9 @@
             this.btnLogout = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label3 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -45,7 +51,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Rockwell", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(376, 459);
+            this.label1.Location = new System.Drawing.Point(417, 569);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(269, 50);
             this.label1.TabIndex = 8;
@@ -60,9 +66,9 @@
             this.btnKelola.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKelola.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKelola.ForeColor = System.Drawing.Color.White;
-            this.btnKelola.Location = new System.Drawing.Point(196, 156);
+            this.btnKelola.Location = new System.Drawing.Point(108, 197);
             this.btnKelola.Name = "btnKelola";
-            this.btnKelola.Size = new System.Drawing.Size(252, 69);
+            this.btnKelola.Size = new System.Drawing.Size(305, 93);
             this.btnKelola.TabIndex = 9;
             this.btnKelola.Text = "👕 KELOLA JERSEY";
             this.btnKelola.UseVisualStyleBackColor = false;
@@ -76,9 +82,9 @@
             this.btnStok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStok.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStok.ForeColor = System.Drawing.Color.White;
-            this.btnStok.Location = new System.Drawing.Point(196, 279);
+            this.btnStok.Location = new System.Drawing.Point(108, 85);
             this.btnStok.Name = "btnStok";
-            this.btnStok.Size = new System.Drawing.Size(252, 69);
+            this.btnStok.Size = new System.Drawing.Size(305, 80);
             this.btnStok.TabIndex = 10;
             this.btnStok.Text = "📦 CEK STOK";
             this.btnStok.UseVisualStyleBackColor = false;
@@ -92,9 +98,9 @@
             this.btnTransaksi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTransaksi.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTransaksi.ForeColor = System.Drawing.Color.White;
-            this.btnTransaksi.Location = new System.Drawing.Point(521, 156);
+            this.btnTransaksi.Location = new System.Drawing.Point(108, 311);
             this.btnTransaksi.Name = "btnTransaksi";
-            this.btnTransaksi.Size = new System.Drawing.Size(252, 69);
+            this.btnTransaksi.Size = new System.Drawing.Size(305, 93);
             this.btnTransaksi.TabIndex = 11;
             this.btnTransaksi.Text = "🛒 TRANSAKSI";
             this.btnTransaksi.UseVisualStyleBackColor = false;
@@ -108,9 +114,9 @@
             this.btnLaporan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLaporan.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLaporan.ForeColor = System.Drawing.Color.White;
-            this.btnLaporan.Location = new System.Drawing.Point(521, 279);
+            this.btnLaporan.Location = new System.Drawing.Point(108, 429);
             this.btnLaporan.Name = "btnLaporan";
-            this.btnLaporan.Size = new System.Drawing.Size(252, 69);
+            this.btnLaporan.Size = new System.Drawing.Size(305, 93);
             this.btnLaporan.TabIndex = 12;
             this.btnLaporan.Text = "📊 LAPORAN";
             this.btnLaporan.UseVisualStyleBackColor = false;
@@ -124,7 +130,7 @@
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogout.ForeColor = System.Drawing.Color.White;
-            this.btnLogout.Location = new System.Drawing.Point(21, 459);
+            this.btnLogout.Location = new System.Drawing.Point(12, 569);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(162, 50);
             this.btnLogout.TabIndex = 13;
@@ -139,7 +145,7 @@
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.Font = new System.Drawing.Font("Rockwell", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(279, 239);
+            this.label2.Location = new System.Drawing.Point(177, 197);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 50);
             this.label2.TabIndex = 14;
@@ -157,13 +163,45 @@
             this.label7.TabIndex = 18;
             this.label7.Text = "🐰 MINJI SPORT ⚽";
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(536, 109);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(520, 390);
+            this.chart1.TabIndex = 19;
+            this.chart1.Text = "chart1";
+            this.chart1.Click += new System.EventHandler(this.chart1_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label3.Font = new System.Drawing.Font("Rockwell", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(477, 40);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(596, 50);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "🐰 Grafik Data Stok Jersrey ⚽";
+            // 
             // FormMenuUtama
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(963, 529);
+            this.ClientSize = new System.Drawing.Size(1134, 671);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnLogout);
@@ -177,6 +215,8 @@
             this.Name = "FormMenuUtama";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormMenuUtama";
+            this.Load += new System.EventHandler(this.FormMenuUtama_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -191,5 +231,7 @@
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Label label3;
     }
 }
