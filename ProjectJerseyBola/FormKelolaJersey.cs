@@ -26,12 +26,20 @@ namespace ProjectJerseyBola
             try
             {
                 conn.Open();
-                // REVISI UCP 2: Pake VIEW
+                // VIEW
                 string query = "SELECT * FROM vw_DataJersey";
 
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
+
+                bs.DataSource = dt;
+                dgvJersey.DataSource = bs;
+
+                if (bindingNavigator1 != null)
+                {
+                    bindingNavigator1.BindingSource = bs;
+                }
             }
             catch (Exception ex)
             {
@@ -54,7 +62,7 @@ namespace ProjectJerseyBola
             txtID.Focus();
         }
 
-        // --- REVISI UCP 2: METHOD SUPER UNTUK EKSEKUSI STORED PROCEDURE ---
+        // --- REVISI UCP 2: METHOD STORED PROCEDURE ---
         void EksekusiSP_ManageJersey(string aksi)
         {
             SqlConnection conn = new SqlConnection(connectionString);
@@ -78,7 +86,7 @@ namespace ProjectJerseyBola
                     cmd.Parameters.AddWithValue("@Ukuran", cbUkuran.Text);
                 }
 
-                cmd.ExecuteNonQuery(); // DOR! Tembak ke database
+                cmd.ExecuteNonQuery(); // Tembak ke database
 
                 MessageBox.Show("Mantap! Aksi " + aksi + " berhasil cuy.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 TampilkanData();
@@ -226,6 +234,21 @@ namespace ProjectJerseyBola
 
         private void txtNama_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = true; // Tolak kalau ada simbol
+            }
+        }
+
+        private void bindingNavigator1_BindingContextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormKelolaJersey_Load(object sender, EventArgs e)
+        {
+            // Kasih komentar biar dia nggak nimpa VIEW
+            // this.jerseyTableAdapter.Fill(this.dB_JerseyDataSet.Jersey);
         }
     }
 }

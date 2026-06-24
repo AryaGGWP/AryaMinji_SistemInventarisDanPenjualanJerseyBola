@@ -2,9 +2,10 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using System.IO; 
-using iTextSharp.text; 
+using System.IO;
+using iTextSharp.text;
 using iTextSharp.text.pdf;
+
 namespace ProjectJerseyBola
 {
     public partial class FormLaporan : Form
@@ -14,10 +15,10 @@ namespace ProjectJerseyBola
         public FormLaporan()
         {
             InitializeComponent();
-            TampilDataLaporan(); 
+            TampilDataLaporan();
         }
 
-        // --- METHOD TAMPIL DATA ---
+        // --- METHOD TAMPIL DATA (MENGGUNAKAN VIEW) ---
         void TampilDataLaporan()
         {
             SqlConnection conn = new SqlConnection(connectionString);
@@ -25,7 +26,7 @@ namespace ProjectJerseyBola
             {
                 conn.Open();
 
-                // view
+                // view 
                 string query = "SELECT * FROM vw_LaporanPenjualan ORDER BY [Waktu Transaksi] DESC";
 
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
@@ -33,7 +34,6 @@ namespace ProjectJerseyBola
                 da.Fill(dt);
 
                 dgvLaporan.DataSource = dt;
-
                 dgvLaporan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             catch (Exception ex)
@@ -46,7 +46,33 @@ namespace ProjectJerseyBola
             }
         }
 
-        private void label8_Click(object sender, EventArgs e){}
+        // --- POIN 3: TOMBOL CARI (DENGAN SQL INJECTION) ---
+        private void btnCari_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            try
+            {
+                conn.Open();
+
+                // Query digabung langsung pake tanda plus (+), nggak pake Parameter (@)
+                string query = "SELECT * FROM vw_LaporanPenjualan WHERE Kasir = '" + txtCari.Text + "'";
+
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgvLaporan.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error pencarian: " + ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private void label8_Click(object sender, EventArgs e) { }
 
         // --- TOMBOL KEMBALI ---
         private void btnKembali_Click(object sender, EventArgs e)
@@ -86,7 +112,6 @@ namespace ProjectJerseyBola
                     {
                         try
                         {
-                            // Bikin tabel PDF berdasarkan jumlah kolom di DGV
                             PdfPTable pdfTable = new PdfPTable(dgvLaporan.Columns.Count);
                             pdfTable.DefaultCell.Padding = 3;
                             pdfTable.WidthPercentage = 100;
@@ -99,10 +124,9 @@ namespace ProjectJerseyBola
                                 pdfTable.AddCell(cell);
                             }
 
-                            // 2. Masukin Isi Datanya
                             foreach (DataGridViewRow row in dgvLaporan.Rows)
                             {
-                                if (!row.IsNewRow) 
+                                if (!row.IsNewRow)
                                 {
                                     foreach (DataGridViewCell cell in row.Cells)
                                     {
@@ -111,20 +135,17 @@ namespace ProjectJerseyBola
                                 }
                             }
 
-                            // 3. Proses bikin file PDF
                             using (FileStream stream = new FileStream(sfd.FileName, FileMode.Create))
                             {
                                 Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 20f, 0f);
                                 PdfWriter.GetInstance(pdfDoc, stream);
                                 pdfDoc.Open();
 
-                                // Bikin Judul Laporan
                                 Font titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 16);
                                 Paragraph title = new Paragraph("LAPORAN PENJUALAN MINJI SPORT  \n\n", titleFont);
                                 title.Alignment = Element.ALIGN_CENTER;
                                 pdfDoc.Add(title);
 
-                                // Masuk tabel
                                 pdfDoc.Add(pdfTable);
                                 pdfDoc.Close();
                                 stream.Close();

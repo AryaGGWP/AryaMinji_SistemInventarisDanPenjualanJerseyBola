@@ -36,6 +36,8 @@
             this.btnKembali = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.btnCetak = new System.Windows.Forms.Button();
+            this.txtCari = new System.Windows.Forms.TextBox();
+            this.btnCari = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLaporan)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +73,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Rockwell", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(286, 431);
+            this.label8.Location = new System.Drawing.Point(276, 431);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(382, 50);
             this.label8.TabIndex = 22;
@@ -81,11 +83,11 @@
             // dgvLaporan
             // 
             this.dgvLaporan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLaporan.Location = new System.Drawing.Point(17, 70);
+            this.dgvLaporan.Location = new System.Drawing.Point(17, 85);
             this.dgvLaporan.Name = "dgvLaporan";
             this.dgvLaporan.RowHeadersWidth = 51;
             this.dgvLaporan.RowTemplate.Height = 24;
-            this.dgvLaporan.Size = new System.Drawing.Size(854, 343);
+            this.dgvLaporan.Size = new System.Drawing.Size(854, 328);
             this.dgvLaporan.TabIndex = 23;
             // 
             // btnKembali
@@ -131,6 +133,31 @@
             this.btnCetak.UseVisualStyleBackColor = false;
             this.btnCetak.Click += new System.EventHandler(this.btnCetak_Click);
             // 
+            // txtCari
+            // 
+            this.txtCari.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCari.Location = new System.Drawing.Point(17, 56);
+            this.txtCari.Name = "txtCari";
+            this.txtCari.Size = new System.Drawing.Size(171, 31);
+            this.txtCari.TabIndex = 27;
+            this.txtCari.Text = "Cari nama kasir..🔍";
+            this.txtCari.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // btnCari
+            // 
+            this.btnCari.BackColor = System.Drawing.Color.Coral;
+            this.btnCari.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCari.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCari.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCari.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.btnCari.Location = new System.Drawing.Point(188, 52);
+            this.btnCari.Name = "btnCari";
+            this.btnCari.Size = new System.Drawing.Size(81, 35);
+            this.btnCari.TabIndex = 28;
+            this.btnCari.Text = "CARI";
+            this.btnCari.UseVisualStyleBackColor = false;
+            this.btnCari.Click += new System.EventHandler(this.btnCari_Click);
+            // 
             // FormLaporan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -138,6 +165,8 @@
             this.BackColor = System.Drawing.Color.DodgerBlue;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(887, 490);
+            this.Controls.Add(this.btnCari);
+            this.Controls.Add(this.txtCari);
             this.Controls.Add(this.btnCetak);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnKembali);
@@ -164,5 +193,7 @@
         private System.Windows.Forms.Button btnKembali;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCetak;
+        private System.Windows.Forms.TextBox txtCari;
+        private System.Windows.Forms.Button btnCari;
     }
 }
