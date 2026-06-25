@@ -25,8 +25,8 @@ namespace ProjectJerseyBola
 
         private void btnCekKoneksi_Click(object sender, EventArgs e)
         {
-            
-            string connectionString = @"Data Source=IDEAPAD-ARYA\BANGDIO; Initial Catalog=DB_Jersey; User ID=sa; Password=123; TrustServerCertificate=True";
+
+            string connectionString = @"Data Source=192.168.1.19\BANGDIO; Initial Catalog=DB_Jersey; User ID=sa; Password=123; TrustServerCertificate=True";
 
             SqlConnection conn = new SqlConnection(connectionString);
 
@@ -52,7 +52,7 @@ namespace ProjectJerseyBola
                 return;
             }
 
-            string connectionString = @"Data Source=IDEAPAD-ARYA\BANGDIO; Initial Catalog=DB_Jersey; User ID=sa; Password=123; TrustServerCertificate=True";
+            string connectionString = @"Data Source=192.168.1.19\BANGDIO; Initial Catalog=DB_Jersey; User ID=sa; Password=123; TrustServerCertificate=True";
             SqlConnection conn = new SqlConnection(connectionString);
 
             try

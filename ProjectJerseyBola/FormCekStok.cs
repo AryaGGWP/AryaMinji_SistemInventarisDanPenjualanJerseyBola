@@ -7,7 +7,7 @@ namespace ProjectJerseyBola
 {
     public partial class FormCekStok : Form
     {
-        string connectionString = @"Data Source=IDEAPAD-ARYA\BANGDIO; Initial Catalog=DB_Jersey; User ID=sa; Password=123; TrustServerCertificate=True";
+        string connectionString = @"Data Source=192.168.1.19\BANGDIO; Initial Catalog=DB_Jersey; User ID=sa; Password=123; TrustServerCertificate=True";
 
         public FormCekStok()
         {
