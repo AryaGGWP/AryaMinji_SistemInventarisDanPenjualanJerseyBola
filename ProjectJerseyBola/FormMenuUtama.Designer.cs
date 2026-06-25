@@ -66,7 +66,7 @@
             this.btnKelola.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKelola.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnKelola.ForeColor = System.Drawing.Color.White;
-            this.btnKelola.Location = new System.Drawing.Point(108, 197);
+            this.btnKelola.Location = new System.Drawing.Point(98, 221);
             this.btnKelola.Name = "btnKelola";
             this.btnKelola.Size = new System.Drawing.Size(305, 93);
             this.btnKelola.TabIndex = 9;
@@ -82,7 +82,7 @@
             this.btnStok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStok.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStok.ForeColor = System.Drawing.Color.White;
-            this.btnStok.Location = new System.Drawing.Point(108, 85);
+            this.btnStok.Location = new System.Drawing.Point(98, 109);
             this.btnStok.Name = "btnStok";
             this.btnStok.Size = new System.Drawing.Size(305, 80);
             this.btnStok.TabIndex = 10;
@@ -98,7 +98,7 @@
             this.btnTransaksi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTransaksi.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTransaksi.ForeColor = System.Drawing.Color.White;
-            this.btnTransaksi.Location = new System.Drawing.Point(108, 311);
+            this.btnTransaksi.Location = new System.Drawing.Point(98, 335);
             this.btnTransaksi.Name = "btnTransaksi";
             this.btnTransaksi.Size = new System.Drawing.Size(305, 93);
             this.btnTransaksi.TabIndex = 11;
@@ -114,7 +114,7 @@
             this.btnLaporan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLaporan.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLaporan.ForeColor = System.Drawing.Color.White;
-            this.btnLaporan.Location = new System.Drawing.Point(108, 429);
+            this.btnLaporan.Location = new System.Drawing.Point(98, 453);
             this.btnLaporan.Name = "btnLaporan";
             this.btnLaporan.Size = new System.Drawing.Size(305, 93);
             this.btnLaporan.TabIndex = 12;
@@ -169,13 +169,13 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(536, 109);
+            this.chart1.Location = new System.Drawing.Point(486, 109);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(520, 390);
+            this.chart1.Size = new System.Drawing.Size(618, 457);
             this.chart1.TabIndex = 19;
             this.chart1.Text = "chart1";
             this.chart1.Click += new System.EventHandler(this.chart1_Click);
